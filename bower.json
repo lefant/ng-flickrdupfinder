@@ -8,9 +8,10 @@
   "dependencies": {
     "angular": "1.2.x",
     "angular-route": "1.2.x",
+    "angular-resource": "~1.2.x",
     "angular-loader": "1.2.x",
     "angular-mocks": "~1.2.15",
     "oauth.io": "0.1.7",
-    "angular-oauthio": "master"
+    "underscore": "1.6.0"
   }
 }
