@@ -1,0 +1,12 @@
+result:
+<br>
+<span ng-repeat="photo in results">
+  <img ng-src="http://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_s.jpg" title="{{photo.title}}" ng-click="toggleTag(photo)"></img>
+</span>
+
+<br>
+special:
+<br>
+<span ng-repeat="photo in specials">
+  <img ng-src="http://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_s.jpg" title="{{photo.title}}" ng-click="toggleTag(photo)"></img>
+</span>
