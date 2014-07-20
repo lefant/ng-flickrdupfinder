@@ -11,7 +11,8 @@
     "angular-resource": "~1.2.x",
     "angular-loader": "1.2.x",
     "angular-mocks": "~1.2.15",
-    "oauth.io": "0.1.7",
+    "jquery": "2.1.1",
+    "oauth-js": "0.2.2",
     "underscore": "1.6.0"
   }
 }
