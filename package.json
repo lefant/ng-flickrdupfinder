@@ -1,9 +1,9 @@
 {
-  "name": "angular-seed",
+  "name": "ng-flickrdupfinder",
   "private": true,
   "version": "0.0.0",
-  "description": "A starter project for AngularJS",
-  "repository": "https://github.com/angular/angular-seed",
+  "description": "lightweight webapp to find duplicate images on flickr",
+  "repository": "https://github.com/lefant/ng-flickrdupfinder",
   "license": "MIT",
   "devDependencies": {
     "karma": "~0.10",
