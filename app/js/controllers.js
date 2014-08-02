@@ -11,9 +11,10 @@ angular.module('flickrDupFinderControllers',
            photo_id: photo.id,
            method: 'flickr.photos.addTags',
            tags: 'flickrdupfinder'
+         }, function() {
+           delete $scope.results[photo.id];
+           $scope.specials[photo.id] = photo;
          });
-         delete $scope.results[photo.id];
-         $scope.specials[photo.id] = photo;
        };
 
        $scope.removeTag = function(photo) {
@@ -31,11 +32,12 @@ angular.module('flickrDupFinderControllers',
                method: 'flickr.photos.removeTag',
                photo_id: photo.id,
                tag_id: tag.id
+             }, function() {
+               delete $scope.specials[photo.id];
+               $scope.results[photo.id] = photo;
              });
            }
          });
-         delete $scope.specials[photo.id];
-         $scope.results[photo.id] = photo;
        };
 
        function objectifyResult(result) {
