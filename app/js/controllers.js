@@ -17,7 +17,6 @@ angular.module('flickrDupFinderControllers',
        };
 
        function addTag(photo) {
-         $log.debug("addTag: ", photo);
          Flickr.get({
            photo_id: photo.id,
            method: 'flickr.photos.addTags',
