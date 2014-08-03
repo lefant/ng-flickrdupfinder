@@ -86,8 +86,8 @@ angular.module('flickrDupFinderControllers',
              getPage(page + 1, photosAcc2);
            } else {
              $scope.initialDownload = false;
-             groupDuplicates(photosAcc2);
            }
+           groupDuplicates(photosAcc2);
          });
        }
        $scope.initialDownload = true;
