@@ -40,18 +40,10 @@ angular.module('flickrDupFinderControllers',
          });
        };
 
-       function objectifyResult(result) {
-         function prefixId(photo) {
-           return [photo.id, photo];
-         }
-         var prefixedResult = _.map(result, prefixId);
-         return _.object(prefixedResult);
-       }
-
        Flickr.get({tags: "flickrdupfinder"}, function(specialResult) {
-         $scope.specials = objectifyResult(specialResult.photos.photo);
+         $scope.specials = _.indexBy(specialResult.photos.photo, 'id');
          Flickr.get({tags: "screens", per_page: 10}, function(plainResult) {
-           var allResults = objectifyResult(plainResult.photos.photo);
+           var allResults = _.indexBy(plainResult.photos.photo, 'id');
            $scope.results = _.omit(allResults, _.keys($scope.specials));
          });
        });
