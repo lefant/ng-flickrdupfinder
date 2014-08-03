@@ -1,12 +1,12 @@
-result:
 <br>
-<span ng-repeat="(id, photo) in results track by id">
-  <img ng-src="http://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_s.jpg" title="{{photo.title}}" ng-click="addTag(photo)"></img>
+<span ng-repeat="(fingerprint, photos) in groups track by fingerprint">
+  <span ng-repeat="(id, photo) in photos track by id">
+    <img ng-src="http://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_s.jpg" title="{{photo.title}}" ng-click="toggleTag(photo)" ng-class="{duplicate: photo.duplicate}"></img>
+  </span>
+  <br>
 </span>
 
 <br>
-special:
-<br>
 <span ng-repeat="(id, photo) in specials track by id">
-  <img ng-src="http://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_s.jpg" title="{{photo.title}}" ng-click="removeTag(photo)"></img>
+  <img ng-src="http://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_s.jpg" title="{{photo.title}}" ng-click="toggleTag(photo)"></img>
 </span>
