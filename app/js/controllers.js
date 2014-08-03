@@ -62,13 +62,26 @@ angular.module('flickrDupFinderControllers',
          return group[1].length > 1;
        }
 
-       Flickr.get({tags: "flickrdupfinder"}, function(specialResult) {
-         $scope.specials = _.indexBy(specialResult.photos.photo, 'id');
-         Flickr.get({tags: "screens", per_page: 10}, function(plainResult) {
-           var allResults = _.map(plainResult.photos.photo, checkTag);
-           var groups = _.groupBy(allResults, fingerprint);
-           var groups2 = _.object(_.filter(_.pairs(groups), atLeastTwo));
-           $scope.groups = groups2;
-         });
+       Flickr.get({tags: specialTag}, function(result) {
+         $scope.specials = _.indexBy(result.photos.photo, 'id');
        });
+
+       function groupDuplicates(results) {
+         var results2 = _.map(results, checkTag);
+         var groups = _.groupBy(results2, fingerprint);
+         var groups2 = _.object(_.filter(_.pairs(groups), atLeastTwo));
+         $scope.groups = groups2;
+       }
+
+       function getPage(page, photosAcc) {
+         Flickr.get({page: page, per_page: 500}, function(result) {
+           var photosAcc2 = photosAcc.concat(result.photos.photo);
+           if (page < result.photos.pages) {
+             getPage(page + 1, photosAcc2);
+           } else {
+             groupDuplicates(photosAcc2);
+           }
+         });
+       }
+       getPage(1, []);
      }]);
