@@ -68,21 +68,26 @@ angular.module('flickrDupFinderControllers',
        });
 
        function groupDuplicates(results) {
-         var results2 = _.map(results, checkTag);
-         var groups = _.groupBy(results2, fingerprint);
+         var results2 = _.filter(results, dateTakenIsMostGranular);
+         var results3 = _.map(results2, checkTag);
+         var groups = _.groupBy(results3, fingerprint);
          var groups2 = _.object(_.filter(_.pairs(groups), atLeastTwo));
          $scope.groups = groups2;
        }
 
        function getPage(page, photosAcc) {
+         $scope.page = page;
          Flickr.get({page: page, per_page: 500}, function(result) {
+           $scope.totalPages = result.photos.pages;
            var photosAcc2 = photosAcc.concat(result.photos.photo);
            if (page < result.photos.pages) {
              getPage(page + 1, photosAcc2);
            } else {
+             $scope.initialDownload = false;
              groupDuplicates(photosAcc2);
            }
          });
        }
+       $scope.initialDownload = true;
        getPage(1, []);
      }]);
