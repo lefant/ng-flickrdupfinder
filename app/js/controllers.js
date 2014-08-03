@@ -20,7 +20,8 @@ angular.module('flickrDupFinderControllers',
          $log.debug("addTag: ", photo);
          Flickr.get({
            photo_id: photo.id,
-           method: 'flickr.photos.addTags'
+           method: 'flickr.photos.addTags',
+           tags: specialTag
          }, function() {
            photo.duplicate = true;
            $scope.taggedDuplicate[photo.id] = photo;
