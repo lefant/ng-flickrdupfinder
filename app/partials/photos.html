@@ -1,7 +1,6 @@
 <div ng-if="initialDownload">
-initial download of photo data (page {{page}} of {{totalPages}})
+initial download of photo data in progress (page {{page}} of {{totalPages}})
 </div>
-
 <div ng-if="!groups">
 no duplicates found (yet?)
 </div>
@@ -16,9 +15,10 @@ click thumbnails to toggle duplicate status
   </span>
   <br>
 </span>
-
-
+<br>
+<br>
 duplicates already tagged "flickrdupfinder":
+<br>
 <br>
 <span ng-repeat="(id, photo) in taggedDuplicate track by id">
   <img ng-src="http://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_s.jpg" title="{{photo.title}}" ng-click="toggleTag(photo)"></img>
