@@ -1,12 +1,25 @@
-result:
+<div ng-if="initialDownload">
+initial download of photo data in progress (page {{page}} of {{totalPages}})
+</div>
+<div ng-if="!groups">
+no duplicates found (yet?)
+</div>
+<div ng-if="groups">
+click thumbnails to toggle duplicate status
 <br>
-<span ng-repeat="photo in results">
-  <img ng-src="http://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_s.jpg" title="{{photo.title}}" ng-click="toggleTag(photo)"></img>
+<br>
+</div>
+<span ng-repeat="(fingerprint, photos) in groups track by fingerprint">
+  <span ng-repeat="(id, photo) in photos track by id">
+    <img ng-src="http://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_s.jpg" title="{{photo.title}}" ng-click="toggleTag(photo)" ng-class="{duplicate: photo.duplicate}"></img>
+  </span>
+  <br>
 </span>
-
 <br>
-special:
 <br>
-<span ng-repeat="photo in specials">
+duplicates already tagged "flickrdupfinder":
+<br>
+<br>
+<span ng-repeat="(id, photo) in taggedDuplicate track by id">
   <img ng-src="http://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_s.jpg" title="{{photo.title}}" ng-click="toggleTag(photo)"></img>
 </span>
