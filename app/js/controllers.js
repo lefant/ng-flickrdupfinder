@@ -64,6 +64,11 @@ angular.module('flickrDupFinderControllers',
          return group[1].length > 1;
        }
 
+       function dateTakenIsMostGranular(photo) {
+         return true;
+         //return photo.datetakengranularity == "0";
+       }
+
        Flickr.get({tags: specialTag}, function(result) {
          var checkedResults = _.map(result.photos.photo, checkTag);
          $scope.taggedDuplicate = _.indexBy(checkedResults, 'id');
