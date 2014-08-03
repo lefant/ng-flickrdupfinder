@@ -55,7 +55,7 @@ angular.module('flickrDupFinderControllers',
        }
 
        function fingerprint(photo) {
-         return photo.datetaken + '+' + photo.title;
+         return photo.title.replace(/-[0-9]$/, '') + '##' + photo.datetaken;
        }
 
        function atLeastTwo(group) {
