@@ -44,6 +44,7 @@ angular.module('flickrDupFinderControllers',
                tag_id: tag.id
              }, function() {
                photo.duplicate = false;
+               $scope.groups[fingerprint(photo)][photo.id] = photo;
                delete $scope.taggedDuplicate[photo.id];
              });
            }
