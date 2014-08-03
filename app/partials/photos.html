@@ -6,7 +6,8 @@
   <br>
 </span>
 
+duplicates tagged "flickrdupfinder":
 <br>
-<span ng-repeat="(id, photo) in specials track by id">
+<span ng-repeat="(id, photo) in taggedDuplicate track by id">
   <img ng-src="http://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_s.jpg" title="{{photo.title}}" ng-click="toggleTag(photo)"></img>
 </span>

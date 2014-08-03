@@ -23,7 +23,7 @@ angular.module('flickrDupFinderControllers',
            method: 'flickr.photos.addTags'
          }, function() {
            photo.duplicate = true;
-           $scope.specials[photo.id] = photo;
+           $scope.taggedDuplicate[photo.id] = photo;
          });
        };
 
@@ -43,7 +43,7 @@ angular.module('flickrDupFinderControllers',
                tag_id: tag.id
              }, function() {
                photo.duplicate = false;
-               delete $scope.specials[photo.id];
+               delete $scope.taggedDuplicate[photo.id];
              });
            }
          });
@@ -63,7 +63,8 @@ angular.module('flickrDupFinderControllers',
        }
 
        Flickr.get({tags: specialTag}, function(result) {
-         $scope.specials = _.indexBy(result.photos.photo, 'id');
+         var checkedResults = _.map(result.photos.photo, checkTag);
+         $scope.taggedDuplicate = _.indexBy(checkedResults, 'id');
        });
 
        function groupDuplicates(results) {
