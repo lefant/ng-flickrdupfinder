@@ -18,10 +18,8 @@ click thumbnails to toggle duplicate status
 </span>
 
 
-<div ng-if="!_.size(taggedDuplicate) === 0">
-  duplicates tagged "flickrdupfinder":
-  <br>
-  <span ng-repeat="(id, photo) in taggedDuplicate track by id">
-    <img ng-src="http://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_s.jpg" title="{{photo.title}}" ng-click="toggleTag(photo)"></img>
-  </span>
-</div>
+duplicates already tagged "flickrdupfinder":
+<br>
+<span ng-repeat="(id, photo) in taggedDuplicate track by id">
+  <img ng-src="http://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_s.jpg" title="{{photo.title}}" ng-click="toggleTag(photo)"></img>
+</span>
