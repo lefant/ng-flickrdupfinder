@@ -3,7 +3,7 @@
 /* Services */
 
 angular.module('flickrDupFinderServices', ['ngResource'])
-  .factory(
+  .service(
     'Flickr',
     ['$window', '$log', '$resource', '$http', '$location',
      function($window, $log, $resource, $http, $location) {
