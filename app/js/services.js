@@ -13,22 +13,7 @@ angular.module('flickrDupFinderServices', ['ngResource'])
        $window.OAuth.initialize(key, {cache: true});
        $window.OAuth.setOAuthdURL(oauthd_url);
        var resource;
-       $window.OAuth.popup('flickr', {state: 'state'}).done(function(result) {
-         // test request
-         result.get('services/rest',
-                    {data: {
-                      method: "flickr.photos.search",
-                      format: "json",
-                      user_id: "me",
-                      per_page: 10,
-                      extras: "date_upload,date_taken,tags",
-                      nojsoncallback: 1
-                    }}).done(function(res) {
-                      $log.log('initial OAuth result.get() successful: ', res);
-                    }).fail(function(err) {
-                      $log.log('initial OAuth result.get() failure: ', err);
-                    });
-
+       $window.OAuth.popup('flickr').done(function(result) {
          var oauthio = 'k=' + key;
          oauthio += '&oauthv=1';
          function kv_result(key) { return '&'+key+'='+encodeURIComponent(result[key]); }
