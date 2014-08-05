@@ -8,7 +8,8 @@ angular.module('flickrDupFinder', [
     $routeProvider
       .when('/photos', {
         templateUrl: 'partials/photos.html',
-        controller: 'photoCtrl'
+        controller: 'photoCtrl',
+        resolve: { 'Flickr': 'Flickr' }
       })
     .otherwise({
       redirectTo: '/photos'
