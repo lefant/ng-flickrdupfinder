@@ -1,19 +1,15 @@
 'use strict';
 
-/* Services */
-
-angular.module('flickrDupFinderServices', ['ngResource'])
+angular.module('flickrDupFinderServices', ['ngResource', 'flickrDupFinderConfig'])
   .service(
     'Flickr',
-    ['$window', '$log', '$resource', '$http', '$q',
-     function($window, $log, $resource, $http, $q) {
-       var oauthd_url = 'http://nisse.lefant.net:6284';
-       var key = 'foRRKXfQipy7kziBuWDhh1Ibs_k';   // nisse
-       //var key = 'cF4gOblEUpueTtsL44-gVjZeeXM'; // oauth.io
-       $window.OAuth.initialize(key, {cache: true});
-       $window.OAuth.setOAuthdURL(oauthd_url);
+    ['$window', '$log', '$resource', '$http', '$q', 'OAUTHD_URL', 'APP_PUBLIC_KEY',
+     function($window, $log, $resource, $http, $q, OAUTHD_URL, APP_PUBLIC_KEY) {
+       $window.OAuth.initialize(APP_PUBLIC_KEY, {cache: true});
+       $window.OAuth.setOAuthdURL(OAUTHD_URL);
        var resource = $q.defer();
-       $window.OAuth.popup('flickr').done(function(result) {
+       function doneHandler(result) {
+         var key = APP_PUBLIC_KEY;
          var oauthio = 'k=' + key;
          oauthio += '&oauthv=1';
          function kv_result(key) { return '&'+key+'='+encodeURIComponent(result[key]); }
@@ -23,7 +19,7 @@ angular.module('flickrDupFinderServices', ['ngResource'])
          $http.defaults.headers.common = {oauthio: oauthio};
          resource.resolve(
            $resource(
-             oauthd_url + '/request/flickr/services/rest/',
+             OAUTHD_URL + '/request/flickr/services/rest/',
              {
                method: "flickr.photos.search",
                format: "json",
@@ -35,9 +31,17 @@ angular.module('flickrDupFinderServices', ['ngResource'])
                extras: "date_upload,date_taken,tags",
                nojsoncallback: 1
              }));
-       }).fail(function(error) {
-         $log.log('OAuth.popup error: ', error);
-         resource.reject('OAuth.popup error: ' + error);
-       });
+       }
+
+       if ($window.OAuth.callback('flickr')) {
+         $window.OAuth.callback('flickr').done(doneHandler).fail(function(callbackError) {
+           $log.log('OAuth.callback error: ', callbackError);
+         });
+       } else {
+         $window.OAuth.popup('flickr').done(doneHandler).fail(function(error) {
+           $log.log('OAuth.popup error: ', error);
+           resource.reject('OAuth.popup error: ' + error);
+         });
+       }
        return resource.promise;
      }]);
