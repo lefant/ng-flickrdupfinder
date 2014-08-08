@@ -4,17 +4,11 @@ require('angular');
 
 require('./services');
 
-angular.module('underscore', []).factory('_', ['$window', '$log', function($window, $log) {
-  require('underscore');
-  $log.debug('underscore: ', $window._);
-  return $window._;
-}]);
-
-angular.module('flickrDupFinderControllers', ['flickrDupFinderServices', 'underscore'])
+angular.module('flickrDupFinderControllers', ['flickrDupFinderServices'])
   .controller(
     'photoCtrl',
-    ['$scope', '$log', 'Flickr', '_',
-     function($scope, $log, Flickr, _) {
+    ['$scope', '$log', 'Flickr', function($scope, $log, Flickr) {
+       var _ = require('underscore');
        var specialTag = 'flickrdupfinder';
 
        $scope.toggleTag = function(photo) {

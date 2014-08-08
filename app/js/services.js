@@ -1,13 +1,15 @@
 'use strict';
 
-
 require('angular');
 require('angular-resource');
 
 require('./config');
 
 angular.module('OAuth', []).factory('OAuth', ['$window', '$log', function($window, $log) {
-  require('jquery');
+  //jquery = require('jquery', {expose: 'jQuery', noParse: true});
+  //require([jquery], 'oauth-js');
+  var jQuery = require('jquery');
+  global.jQuery = jQuery;
   require('oauth-js');
   $log.debug('jQuery: ', $window.jQuery);
   $log.debug('oauth: ', $window.OAuth);
