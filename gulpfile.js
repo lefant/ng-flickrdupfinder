@@ -6,7 +6,9 @@ var debowerify = require("debowerify");
 var watchify = require('watchify');
 
 gulp.task("browserify", function () {
-  return browserify("./app/js/app.js", { insertGlobals:  true })
+  return browserify("./app/js/app.js",
+                    { debug: true,
+                      insertGlobals:  true })
     .bundle()
     .pipe(source("bundle.js"))
     .pipe(gulp.dest("./dist/"));
