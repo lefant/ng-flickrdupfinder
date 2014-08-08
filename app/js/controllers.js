@@ -1,19 +1,16 @@
 'use strict';
 
-angular.module('flickrDupFinderControllers',
-               ['flickrDupFinderConfig',
-                'flickrDupFinderServices',
-                'underscore'])
-  .controller(
-    'redirectCtrl',
-    ['$window', '$location', 'OAUTHD_URL', 'APP_PUBLIC_KEY',
-     function($window, $location, OAUTHD_URL, APP_PUBLIC_KEY) {
-       $window.OAuth.initialize(APP_PUBLIC_KEY, {cache: true});
-       $window.OAuth.setOAuthdURL(OAUTHD_URL);
-       var dest_url = $location.absUrl() + 'photos';
-       $window.console.log(dest_url);
-       $window.OAuth.redirect('flickr', dest_url);
-     }])
+require('angular');
+
+require('./services');
+
+angular.module('underscore', []).factory('_', ['$window', '$log', function($window, $log) {
+  require('underscore');
+  $log.debug('underscore: ', $window._);
+  return $window._;
+}]);
+
+angular.module('flickrDupFinderControllers', ['flickrDupFinderServices', 'underscore'])
   .controller(
     'photoCtrl',
     ['$scope', '$log', 'Flickr', '_',

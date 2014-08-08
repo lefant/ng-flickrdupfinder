@@ -1,12 +1,26 @@
 'use strict';
 
-angular.module('flickrDupFinderServices', ['ngResource', 'flickrDupFinderConfig'])
+
+require('angular');
+require('angular-resource');
+
+require('./config');
+
+angular.module('OAuth', []).factory('OAuth', ['$window', '$log', function($window, $log) {
+  require('jquery');
+  require('oauth-js');
+  $log.debug('jQuery: ', $window.jQuery);
+  $log.debug('oauth: ', $window.OAuth);
+  return $window.OAuth;
+}]);
+
+angular.module('flickrDupFinderServices', ['ngResource', 'flickrDupFinderConfig', 'OAuth'])
   .service(
     'Flickr',
-    ['$window', '$log', '$resource', '$http', '$q', 'OAUTHD_URL', 'APP_PUBLIC_KEY',
-     function($window, $log, $resource, $http, $q, OAUTHD_URL, APP_PUBLIC_KEY) {
-       $window.OAuth.initialize(APP_PUBLIC_KEY, {cache: true});
-       $window.OAuth.setOAuthdURL(OAUTHD_URL);
+    ['$window', '$log', '$resource', '$http', '$q', '$location', 'OAuth', 'OAUTHD_URL', 'APP_PUBLIC_KEY',
+     function($window, $log, $resource, $http, $q, $location, OAuth, OAUTHD_URL, APP_PUBLIC_KEY) {
+       OAuth.initialize(APP_PUBLIC_KEY, {cache: true});
+       OAuth.setOAuthdURL(OAUTHD_URL);
        var resource = $q.defer();
        function doneHandler(result) {
          var key = APP_PUBLIC_KEY;
@@ -33,12 +47,17 @@ angular.module('flickrDupFinderServices', ['ngResource', 'flickrDupFinderConfig'
              }));
        }
 
-       if ($window.OAuth.callback('flickr')) {
-         $window.OAuth.callback('flickr').done(doneHandler).fail(function(callbackError) {
+       if (OAuth.callback('flickr')) {
+         OAuth.callback('flickr').done(doneHandler).fail(function(callbackError) {
            $log.log('OAuth.callback error: ', callbackError);
          });
        } else {
-         $window.OAuth.popup('flickr').done(doneHandler).fail(function(error) {
+         var dest_url = $location.absUrl();
+         $window.console.log(dest_url);
+         //OAuth.redirect('flickr', dest_url);
+
+         $window.console.log('oauth: ', OAuth);
+         OAuth.popup('flickr').done(doneHandler).fail(function(error) {
            $log.log('OAuth.popup error: ', error);
            resource.reject('OAuth.popup error: ' + error);
          });
