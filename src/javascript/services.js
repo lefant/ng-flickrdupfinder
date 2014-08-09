@@ -10,6 +10,7 @@ module.exports = angular.module(
     ['$log', '$resource', '$http', '$q', '$location', 'OAuth', 'OAUTHD_URL', 'APP_PUBLIC_KEY',
      function(
        $log, $resource, $http, $q, $location, OAuth, OAUTHD_URL, APP_PUBLIC_KEY) {
+       if ($location.hash() === '') { $location.path('/'); } //so redirect to absUrl() works
        OAuth.initialize(APP_PUBLIC_KEY, {cache: true});
        OAuth.setOAuthdURL(OAUTHD_URL);
        var resource = $q.defer();
