@@ -111,8 +111,6 @@ module.exports = angular.module(
         $log.debug('updateVisibleGroups itemsPerPage: ', $scope.itemsPerPage);
         $log.debug('updateVisibleGroups first: ', first);
         $log.debug('updateVisibleGroups last: ', last);
-        $log.debug('updateVisibleGroups groups: ', $scope.groups);
-        $log.debug('updateVisibleGroups visibleGroups: ', $scope.visibleGroups);
       }
 
       $scope.pageChanged = function() {
