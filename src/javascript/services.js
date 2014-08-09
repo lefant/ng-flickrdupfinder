@@ -2,10 +2,9 @@
 
 require('angular-resource');
 
-require('./config');
-require('./oauth-shim');
-
-angular.module('flickrDupFinderServices', ['ngResource', 'flickrDupFinderConfig', 'OAuth'])
+module.exports = angular.module(
+  'flickrDupFinderServices',
+  ['ngResource', require('./config').name, require('./oauth-shim').name])
   .service(
     'Flickr',
     ['$window', '$log', '$resource', '$http', '$q', '$location', 'OAuth', 'OAUTHD_URL', 'APP_PUBLIC_KEY',

@@ -1,8 +1,7 @@
 'use strict';
 
-require('./services');
-
-angular.module('flickrDupFinderControllers', ['flickrDupFinderServices'])
+module.exports = angular.module(
+  'flickrDupFinderControllers', [require('./services').name])
   .controller(
     'photoCtrl',
     ['$scope', '$log', 'Flickr', function($scope, $log, Flickr) {

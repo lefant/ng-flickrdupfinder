@@ -2,9 +2,7 @@
 
 require('angular-route');
 
-require('./controllers');
-
-angular.module('flickrDupFinder', ['ngRoute', 'flickrDupFinderControllers'])
+angular.module('flickrDupFinder', ['ngRoute', require('./controllers').name])
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
       .when('/photos', {
