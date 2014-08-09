@@ -17,6 +17,7 @@
     "debowerify": "^0.8.1",
     "gulp": "^3.8.7",
     "gulp-changed": "^0.4.1",
+    "gulp-gh-pages": "^0.3.3",
     "gulp-imagemin": "^0.6.2",
     "gulp-notify": "^1.4.2",
     "gulp-ruby-sass": "^0.7.1",
