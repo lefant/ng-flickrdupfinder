@@ -15,16 +15,16 @@ var source       = require('vinyl-source-stream');
 
 gulp.task('browserify', function() {
 
-  var bundleMethod = global.isWatching ? watchify : browserify;
-
-  var bundler = bundleMethod({
-    // Specify the entry point of your app
+  var b = browserify({
     entries: ['./src/javascript/app.js'],
-    // Add file extentions to make optional in your requires
     extensions: ['.js'],
-    // Enable source maps!
-    debug: true
+    debug: true,
+    cache: {},
+    packageCache: {},
+    fullPaths: true
   });
+
+  var bundler = global.isWatching ? watchify(b) : b;
 
   var bundle = function() {
     // Log when bundling starts
