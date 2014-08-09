@@ -29,6 +29,6 @@
   },
   "scripts": {
     "postinstall": "bower install",
-    "start": "http-server -p 8777"
+    "start": "http-server ./build -p 8777"
   }
 }
