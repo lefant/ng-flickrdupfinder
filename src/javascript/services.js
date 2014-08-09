@@ -1,6 +1,6 @@
 'use strict';
 
-var ngResource = require('angular-resource');
+require('angular-resource');
 
 require('./config');
 require('./oauth-shim');

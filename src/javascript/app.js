@@ -1,14 +1,10 @@
 'use strict';
 
-var ngRoute = require('angular-route');
+require('angular-route');
 
-require('./services');
 require('./controllers');
 
-angular.module('flickrDupFinder', [
-  'ngRoute',
-  'flickrDupFinderServices',
-  'flickrDupFinderControllers'])
+angular.module('flickrDupFinder', ['ngRoute', 'flickrDupFinderControllers'])
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
       .when('/photos', {
