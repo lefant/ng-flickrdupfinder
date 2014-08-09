@@ -1,7 +1,6 @@
 'use strict';
 
-require('angular');
-require('angular-route');
+var ngRoute = require('angular-route');
 
 require('./services');
 require('./controllers');

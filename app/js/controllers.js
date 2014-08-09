@@ -1,7 +1,5 @@
 'use strict';
 
-require('angular');
-
 require('./services');
 
 angular.module('flickrDupFinderControllers', ['flickrDupFinderServices'])
