@@ -7,8 +7,9 @@ module.exports = angular.module(
   ['ngResource', require('./config').name, require('./oauth-shim').name])
   .service(
     'Flickr',
-    ['$window', '$log', '$resource', '$http', '$q', '$location', 'OAuth', 'OAUTHD_URL', 'APP_PUBLIC_KEY',
-     function($window, $log, $resource, $http, $q, $location, OAuth, OAUTHD_URL, APP_PUBLIC_KEY) {
+    ['$log', '$resource', '$http', '$q', '$location', 'OAuth', 'OAUTHD_URL', 'APP_PUBLIC_KEY',
+     function(
+       $log, $resource, $http, $q, $location, OAuth, OAUTHD_URL, APP_PUBLIC_KEY) {
        OAuth.initialize(APP_PUBLIC_KEY, {cache: true});
        OAuth.setOAuthdURL(OAUTHD_URL);
        var resource = $q.defer();
@@ -16,7 +17,9 @@ module.exports = angular.module(
          var key = APP_PUBLIC_KEY;
          var oauthio = 'k=' + key;
          oauthio += '&oauthv=1';
-         function kv_result(key) { return '&'+key+'='+encodeURIComponent(result[key]); }
+         function kv_result(key) {
+           return '&'+key+'='+encodeURIComponent(result[key]);
+         }
          oauthio += kv_result('oauth_token');
          oauthio += kv_result('oauth_token_secret');
          oauthio += kv_result('code');
@@ -43,12 +46,12 @@ module.exports = angular.module(
          });
        } else {
          var dest_url = $location.absUrl();
-         $window.console.log(dest_url);
+         $log.debug(dest_url);
          //OAuth.redirect('flickr', dest_url);
 
-         $window.console.log('oauth: ', OAuth);
+         $log.debug('oauth: ', OAuth);
          OAuth.popup('flickr').done(doneHandler).fail(function(error) {
-           $log.log('OAuth.popup error: ', error);
+           $log.debug('OAuth.popup error: ', error);
            resource.reject('OAuth.popup error: ' + error);
          });
        }
