@@ -40,20 +40,14 @@ module.exports = angular.module(
              }));
        }
 
-       if (OAuth.callback('flickr')) {
-         OAuth.callback('flickr').done(doneHandler).fail(function(callbackError) {
-           $log.log('OAuth.callback error: ', callbackError);
+       var oauthCallback = OAuth.callback('flickr');
+       if (oauthCallback) {
+         oauthCallback.done(doneHandler).fail(function(callbackError) {
+           $log.debug('OAuth.callback error: ', callbackError);
          });
        } else {
-         var dest_url = $location.absUrl();
-         $log.debug(dest_url);
-         //OAuth.redirect('flickr', dest_url);
-
-         $log.debug('oauth: ', OAuth);
-         OAuth.popup('flickr').done(doneHandler).fail(function(error) {
-           $log.debug('OAuth.popup error: ', error);
-           resource.reject('OAuth.popup error: ' + error);
-         });
+         // the callback url must be routed through .otherwise in the app router
+         OAuth.redirect('flickr', $location.absUrl());
        }
        return resource.promise;
      }]);
