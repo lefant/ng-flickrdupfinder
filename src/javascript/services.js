@@ -3,14 +3,7 @@
 var ngResource = require('angular-resource');
 
 require('./config');
-
-angular.module('OAuth', []).factory('OAuth', ['$window', '$log', function($window, $log) {
-  // jquery from cdn via index.html for now
-  // var jQuery = require('jquery');
-  // global.jQuery = jQuery;
-  require('oauth-js');
-  return $window.OAuth;
-}]);
+require('./oauth-shim');
 
 angular.module('flickrDupFinderServices', ['ngResource', 'flickrDupFinderConfig', 'OAuth'])
   .service(
