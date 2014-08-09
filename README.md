@@ -8,9 +8,7 @@ simple angularjs app to find duplicate pictures on flickr by name and date_taken
 
 access current demo page here:
 
-http://lefant.net/ng-flickrdupfinder/app/
-
-(make sure to allow pop-ups for the oauth handshake)
+http://lefant.net/ng-flickrdupfinder/#/
 
 
 
