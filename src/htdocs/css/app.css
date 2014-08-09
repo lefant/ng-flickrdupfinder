@@ -33,3 +33,7 @@
     opacity: 0.7;
     border:2px solid #FF0000
 }
+
+
+/* http://angular-ui.github.io/bootstrap/#/getting_started says you need this */
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }

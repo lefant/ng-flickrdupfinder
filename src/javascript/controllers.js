@@ -1,7 +1,10 @@
 'use strict';
 
+require('./../../bower_components/ui.bootstrap/src/pagination/pagination');
+
 module.exports = angular.module(
-  'flickrDupFinderControllers', [require('./services').name])
+  'flickrDupFinderControllers',
+  ['ui.bootstrap.pagination', require('./services').name])
   .controller(
     'photoCtrl',
     ['$scope', '$log', 'Flickr', function($scope, $log, Flickr) {
@@ -79,6 +82,7 @@ module.exports = angular.module(
          var groups = _.groupBy(results3, fingerprint);
          var groups2 = _.object(_.filter(_.pairs(groups), atLeastTwo));
          $scope.groups = groups2;
+         updateVisibleGroups()
        }
 
        function getPage(page, photosAcc) {
@@ -94,6 +98,32 @@ module.exports = angular.module(
            groupDuplicates(photosAcc2);
          });
        }
+
+
+      function updateVisibleGroups() {
+        $scope.totalItems = _.size($scope.groups);
+        var first = (($scope.currentPage - 1) * $scope.itemsPerPage);
+        var last = $scope.currentPage * $scope.itemsPerPage;
+        $scope.visibleGroups = _.pick($scope.groups, _.keys($scope.groups).slice(first, last));
+        $log.debug('updateVisibleGroups totalItems: ', $scope.totalItems);
+        $log.debug('updateVisibleGroups currentPage: ', $scope.currentPage);
+        $log.debug('updateVisibleGroups itemsPerPage: ', $scope.itemsPerPage);
+        $log.debug('updateVisibleGroups first: ', first);
+        $log.debug('updateVisibleGroups last: ', last);
+        $log.debug('updateVisibleGroups groups: ', $scope.groups);
+        $log.debug('updateVisibleGroups visibleGroups: ', $scope.visibleGroups);
+      }
+
+      $scope.pageChanged = function() {
+        console.log('Page changed to: ' + $scope.currentPage);
+        updateVisibleGroups()
+      };
+
+      $scope.totalItems = 0;
+      $scope.currentPage = 1;
+      $scope.itemsPerPage = 10;
+      $scope.maxSize = 10;
+
        $scope.initialDownload = true;
        getPage(1, []);
      }]);

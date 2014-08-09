@@ -4,21 +4,22 @@ initial download of photo data in progress (page {{page}} of {{totalPages}})
 <div ng-if="!groups">
 no duplicates found (yet?)
 </div>
-<div ng-if="groups">
+<div ng-if="totalItems > 0">
+<br>
 click thumbnails to toggle duplicate status
 <br>
+<pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" items-per-page="itemsPerPage" ng-change="pageChanged()"></pagination>
 <br>
-</div>
-<span ng-repeat="(fingerprint, photos) in groups track by fingerprint">
+<span ng-repeat="(fingerprint, photos) in visibleGroups track by fingerprint">
   <span ng-repeat="(id, photo) in photos track by id">
     <img ng-src="http://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_s.jpg" title="{{photo.title}}" ng-click="toggleTag(photo)" ng-class="{duplicate: photo.duplicate}"></img>
   </span>
   <br>
 </span>
-<br>
+<pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" items-per-page="itemsPerPage" ng-change="pageChanged()"></pagination>
+</div>
 <br>
 duplicates already tagged "flickrdupfinder":
-<br>
 <br>
 <span ng-repeat="(id, photo) in taggedDuplicate track by id">
   <img ng-src="http://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_s.jpg" title="{{photo.title}}" ng-click="toggleTag(photo)"></img>
