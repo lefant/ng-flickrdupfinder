@@ -10,6 +10,8 @@ module.exports = angular.module(
     ['$scope', '$log', 'Flickr', function($scope, $log, Flickr) {
       var _ = require('underscore');
       var specialTag = 'flickrdupfinder';
+      $scope.itemsPerPage = 10;
+      $scope.maxSize = 10;
 
       $scope.toggleTag = function(photo) {
         if (photo.duplicate) {
@@ -120,8 +122,6 @@ module.exports = angular.module(
 
       $scope.totalItems = 0;
       $scope.currentPage = 1;
-      $scope.itemsPerPage = 10;
-      $scope.maxSize = 10;
       $scope.initialDownload = true;
       getPage(1, []);
     }]);
