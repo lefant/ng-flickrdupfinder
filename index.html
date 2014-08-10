@@ -2,15 +2,22 @@
 <html lang="en" ng-app="flickrDupFinder">
 <head>
   <meta charset="utf-8">
-  <title>flickrDupFinder</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>ng-flickrdupfinder</title>
+
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/app.css"/>
 
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
   <script src="app.js"></script>
 </head>
 <body>
-  <div ng-view></div>
+  <div class="container">
+    <div ng-view></div>
+  </div>
 </body>
 </html>

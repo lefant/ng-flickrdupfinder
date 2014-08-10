@@ -1,27 +1,31 @@
-<div ng-if="initialDownload">
-initial download of photo data in progress (page {{page}} of {{totalPages}})
-</div>
-<div ng-if="!groups">
-no duplicates found (yet?)
-</div>
 <div ng-if="totalItems > 0">
-<br>
-click thumbnails to toggle duplicate status
-<br>
-</div>
-<pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" items-per-page="itemsPerPage"></pagination>
-<br>
-<span ng-repeat="(fingerprint, photos) in visibleGroups track by fingerprint">
-  <span ng-repeat="(id, photo) in photos track by id">
-    <img ng-src="http://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_s.jpg" title="{{photo.title}}" ng-click="toggleTag(photo)" ng-class="{duplicate: photo.duplicate}"></img>
-  </span>
   <br>
-</span>
-<pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" items-per-page="itemsPerPage"></pagination>
-<!-- <br> -->
-<!-- duplicates already tagged "flickrdupfinder": -->
-<!-- <br> -->
-<!-- <br> -->
-<!-- <span ng-repeat="(id, photo) in taggedDuplicate track by id"> -->
-<!--   <img ng-src="http://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_s.jpg" title="{{photo.title}}" ng-click="toggleTag(photo)"></img> -->
-<!-- </span> -->
+  click thumbnails to toggle duplicate status
+  <br>
+</div>
+<div class="navbar-header">
+  <div class="container">
+    <pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" items-per-page="itemsPerPage"></pagination>
+  </div>
+</div>
+
+<div class="container">
+  <div ng-if="initialDownload">
+    initial download of photo data in progress (page {{page}} of {{totalPages}})
+  </div>
+  <div ng-if="!groups">
+    no duplicates found (yet?)
+  </div>
+  <span ng-repeat="(fingerprint, photos) in visibleGroups track by fingerprint">
+    <span ng-repeat="(id, photo) in photos track by id">
+      <img ng-src="http://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_s.jpg" title="{{photo.title}}" ng-click="toggleTag(photo)" ng-class="{duplicate: photo.duplicate}"></img>
+    </span>
+    <br>
+  </span>
+</div>
+
+<div class="footer">
+  <div class="container">
+    <pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" items-per-page="itemsPerPage"></pagination>
+  </div>
+</div>
