@@ -8,7 +8,7 @@ uses filename and date_taken timestamp to identify duplicates, simple
 but often quiet effective. inspired by the now discontinued
 [flickrdupfinder] project.
 
-access live version (beta): http://lefant.net/ng-flickrdupfinder/#/
+access live version (beta): http://ng-flickrdupfinder.lefant.net/#/
 
 --
 
