@@ -19,4 +19,4 @@ oauth authenticated access to flickr is proxied via https://oauth.io/
 [travis-image]: https://travis-ci.org/lefant/ng-flickrdupfinder.svg
 [depstat-url]: https://david-dm.org/lefant/ng-flickrdupfinder#info=devDependencies
 [depstat-image]: https://david-dm.org/lefant/ng-flickrdupfinder/dev-status.svg
-[flickrdupfinder project]: https://github.com/christophemaillot/flickrdupfinder
+[flickrdupfinder]: https://github.com/christophemaillot/flickrdupfinder
