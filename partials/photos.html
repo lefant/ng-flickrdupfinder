@@ -1,6 +1,6 @@
 <div ng-if="totalItems > 0">
   <br>
-  click thumbnails to toggle duplicate status. then view the <a href="https://www.flickr.com/photos/me/tags/flickrdupfinder">set of tagged photos</a>
+  instructions: click thumbnails to toggle duplicate status (adds / removes <i>flickrdupfinder</i> tag), then go to <a href="https://www.flickr.com/photos/organize" target="_blank">flickr organize view</a>, search for <i>flickrdupfinder</i> and delete results in batch.
   <br>
 </div>
 <div class="navbar-header">
@@ -29,4 +29,6 @@
     <pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" items-per-page="itemsPerPage"></pagination>
   </div>
 </div>
+view <a href="https://www.flickr.com/photos/me/tags/flickrdupfinder" target="_blank">photos tagged <i>flickrdupfinder</i></a> to see what you tagged.
+<br>
 <div>visit <a href=http://ly.lefant.net/ng-flickrdupfinder_app>ng-flickrdupfinder on flickr app garden</a></div>
