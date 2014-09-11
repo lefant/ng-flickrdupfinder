@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports = angular.module('flickrDupFinderConfig', [])
-  .constant('OAUTHD_URL', 'http://oauthd.lefant.net')
+  .constant('OAUTHD_URL', 'https://oauthd-lefant.herokuapp.com')
   .constant('APP_PUBLIC_KEY', 'QqSxC9FpX5QsfRhGPpf68w2gLRE') //oauthd-lefant
-  //.constant('APP_PUBLIC_KEY', 'cF4gOblEUpueTtsL44_k') //oauth.io
+  //.constant('OAUTHD_URL', 'http://oauth.io')
+  //.constant('APP_PUBLIC_KEY', 'cF4gOblEUpueTtsL44-gVjZeeXM') //oauth.io
