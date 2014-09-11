@@ -7,3 +7,10 @@ gulp.task('deploy', ['clean-build'], function () {
           cacheDir: '../ng-flickrdupfinder_gh-pages'
         }));
 });
+
+gulp.task('deploy-travis', ['clean-build'], function () {
+    gulp.src("./build/**/*")
+        .pipe(deploy({
+          remoteUrl: 'git@github.com:lefant/ng-flickrdupfinder.git'
+        }));
+});

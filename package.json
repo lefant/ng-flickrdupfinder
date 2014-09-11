@@ -33,7 +33,6 @@
   },
   "scripts": {
     "postinstall": "bower install",
-    "start": "http-server ./build -p 8777",
     "test": "gulp test"
   }
 }
