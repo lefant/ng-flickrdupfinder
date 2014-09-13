@@ -6,6 +6,10 @@ module.exports = angular.module(
   'flickrDupFinderControllers',
   ['ui.bootstrap.pagination', require('./services').name])
   .controller(
+    'startCtrl',
+    ['$http', '$log', function($http, $log) {
+    }])
+  .controller(
     'photoCtrl',
     ['$scope', '$log', 'Flickr', function($scope, $log, Flickr) {
       var _ = require('underscore');
