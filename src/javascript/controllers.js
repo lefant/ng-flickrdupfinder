@@ -60,6 +60,9 @@ module.exports = angular.module(
               photo.inFlight = false;
               $scope.groups[fingerprint(photo)][photo.id] = photo;
             });
+          } else {
+            photo.inFlight = false;
+            $scope.groups[fingerprint(photo)][photo.id] = photo;
           }
         });
       };
