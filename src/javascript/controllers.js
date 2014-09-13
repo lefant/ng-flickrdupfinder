@@ -10,7 +10,7 @@ module.exports = angular.module(
   .controller(
     'startCtrl',
     ['$http', 'OAUTHD_URL', function($http, OAUTHD_URL, $log) {
-      $http.get(OAUTHD_URL);
+      $http.get(OAUTHD_URL + '/ping');
     }])
   .controller(
     'photoCtrl',
