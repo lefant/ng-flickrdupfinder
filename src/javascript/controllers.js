@@ -29,16 +29,19 @@ module.exports = angular.module(
       };
 
       function addTag(photo) {
+        photo.inFlight = true;
         Flickr.get({
           photo_id: photo.id,
           method: 'flickr.photos.addTags',
           tags: specialTag
         }, function() {
           photo.duplicate = true;
+          photo.inFlight = false;
         });
       };
 
       function removeTag(photo) {
+        photo.inFlight = true;
         Flickr.get({
           method: 'flickr.photos.getInfo',
           photo_id: photo.id
@@ -54,6 +57,7 @@ module.exports = angular.module(
               tag_id: tag.id
             }, function() {
               photo.duplicate = false;
+              photo.inFlight = false;
               $scope.groups[fingerprint(photo)][photo.id] = photo;
             });
           }

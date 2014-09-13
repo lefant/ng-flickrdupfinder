@@ -18,7 +18,7 @@
   </div>
   <span ng-repeat="(fingerprint, photos) in visibleGroups track by fingerprint">
     <span ng-repeat="(id, photo) in photos track by id">
-      <img ng-src="http://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_s.jpg" title="{{photo.title}}" ng-click="toggleTag(photo)" ng-class="{duplicate: photo.duplicate}"></img>
+      <img ng-src="http://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_s.jpg" title="{{photo.title}}" ng-click="toggleTag(photo)" ng-class="{inflight: photo.inFlight, duplicate: photo.duplicate}"></img>
     </span>
     <br>
   </span>
