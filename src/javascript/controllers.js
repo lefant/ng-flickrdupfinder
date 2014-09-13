@@ -4,10 +4,13 @@ require('./../../bower_components/ui.bootstrap/src/pagination/pagination');
 
 module.exports = angular.module(
   'flickrDupFinderControllers',
-  ['ui.bootstrap.pagination', require('./services').name])
+  ['ui.bootstrap.pagination',
+   require('./config').name,
+   require('./services').name])
   .controller(
     'startCtrl',
-    ['$http', '$log', function($http, $log) {
+    ['$http', 'OAUTHD_URL', function($http, OAUTHD_URL, $log) {
+      $http.get(OAUTHD_URL);
     }])
   .controller(
     'photoCtrl',
