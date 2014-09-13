@@ -6,7 +6,7 @@ angular.module('flickrDupFinder', ['ngRoute', require('./controllers').name])
   .config(
     ['$locationProvider', '$routeProvider',
      function($locationProvider, $routeProvider) {
-       $locationProvider.html5Mode(true);
+       //$locationProvider.html5Mode(true);
 
        // the oauth redirect callback page must be matched with .otherwise
        $routeProvider
