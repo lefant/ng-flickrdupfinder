@@ -113,15 +113,9 @@ module.exports = angular.module(
         var first = (($scope.currentPage - 1) * $scope.itemsPerPage);
         var last = $scope.currentPage * $scope.itemsPerPage;
         $scope.visibleGroups = _.pick($scope.groups, _.keys($scope.groups).slice(first, last));
-        $log.debug('updateVisibleGroups totalItems: ', $scope.totalItems);
-        $log.debug('updateVisibleGroups currentPage: ', $scope.currentPage);
-        $log.debug('updateVisibleGroups itemsPerPage: ', $scope.itemsPerPage);
-        $log.debug('updateVisibleGroups first: ', first);
-        $log.debug('updateVisibleGroups last: ', last);
       }
 
       $scope.pageChanged = function() {
-        console.log('Page changed to: ' + $scope.currentPage);
         updateVisibleGroups()
       };
 
