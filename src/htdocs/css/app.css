@@ -35,7 +35,7 @@
 }
 
 .inflight {
-    opacity: 0.75;
+    opacity: 0.25;
     border:2px solid #888888
 }
 
