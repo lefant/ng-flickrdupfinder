@@ -35,7 +35,6 @@ module.exports = angular.module(
           tags: specialTag
         }, function() {
           photo.duplicate = true;
-          $scope.taggedDuplicate[photo.id] = photo;
         });
       };
 
@@ -56,7 +55,6 @@ module.exports = angular.module(
             }, function() {
               photo.duplicate = false;
               $scope.groups[fingerprint(photo)][photo.id] = photo;
-              delete $scope.taggedDuplicate[photo.id];
             });
           }
         });
@@ -82,7 +80,6 @@ module.exports = angular.module(
 
       Flickr.get({tags: specialTag}, function(result) {
         var checkedResults = _.map(result.photos.photo, checkTag);
-        $scope.taggedDuplicate = _.indexBy(checkedResults, 'id');
       });
 
       function groupDuplicates(results) {
