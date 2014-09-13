@@ -30,8 +30,13 @@
 }
 
 .duplicate {
-    opacity: 0.7;
+    opacity: 0.5;
     border:2px solid #FF0000
+}
+
+.inflight {
+    opacity: 0.75;
+    border:2px solid #888888
 }
 
 
