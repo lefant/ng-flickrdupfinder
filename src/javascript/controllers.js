@@ -69,33 +69,26 @@ module.exports = angular.module(
         });
       };
 
-      function checkTag(photo) {
+      function hasMaxDateTakenGranularity(photo) {
+        return true;
+        //return photo.datetakengranularity == "0";
+      }
+
+      function updateDuplicateState(photo) {
         photo['duplicate'] = _.contains(photo.tags.split(/ /), specialTag);
         return photo;
       }
 
       function fingerprint(photo) {
-        return photo.title.replace(/-[0-9]$/, '') + '##' + photo.datetaken;
+        return photo.datetaken + '##' + photo.title.replace(/-[0-9]$/, '');
       }
 
       function atLeastTwo(group) {
         return group[1].length > 1;
       }
 
-      function dateTakenIsMostGranular(photo) {
-        return true;
-        //return photo.datetakengranularity == "0";
-      }
-
-      // only works for the first page!
-      Flickr.get({tags: specialTag, per_page: 500}, function(result) {
-        _.map(result.photos.photo, checkTag);
-      });
-
-      function groupDuplicates(results) {
-        var results2 = _.filter(results, dateTakenIsMostGranular);
-        var results3 = _.map(results2, checkTag);
-        var groups = _.groupBy(results3, fingerprint);
+      function groupDuplicates(photos) {
+        var groups = _.groupBy(photos, fingerprint);
         var groups2 = _.object(_.filter(_.pairs(groups), atLeastTwo));
         $scope.groups = groups2;
         updateVisibleGroups()
@@ -103,16 +96,26 @@ module.exports = angular.module(
 
       function getPage(page, photosAcc) {
         $scope.page = page;
-        Flickr.get({page: page, per_page: 500}, function(result) {
-          $scope.totalPages = result.photos.pages;
-          var photosAcc2 = photosAcc.concat(result.photos.photo);
-          if (page < result.photos.pages) {
-            getPage(page + 1, photosAcc2);
-          } else {
-            $scope.initialDownload = false;
-          }
-          groupDuplicates(photosAcc2);
-        });
+        Flickr.get(
+          {method: "flickr.photos.search",
+           page: page,
+           per_page: 500,
+           sort: 'date-taken-asc'},
+          function(result) {
+            $scope.totalPages = result.photos.pages;
+            var resultPhotos = result.photos.photo;
+            var filteredResultPhotos =
+              _.filter(resultPhotos, hasMaxDateTakenGranularity);
+            var updatedResultPhotos =
+              _.map(filteredResultPhotos, updateDuplicateState);
+            var photosAcc2 = photosAcc.concat(updatedResultPhotos);
+            if (page < result.photos.pages) {
+              getPage(page + 1, photosAcc2);
+            } else {
+              $scope.initialDownload = false;
+            }
+            groupDuplicates(photosAcc2);
+          });
       }
 
       function updateVisibleGroups() {
