@@ -87,8 +87,9 @@ module.exports = angular.module(
         //return photo.datetakengranularity == "0";
       }
 
-      Flickr.get({tags: specialTag}, function(result) {
-        var checkedResults = _.map(result.photos.photo, checkTag);
+      // only works for the first page!
+      Flickr.get({tags: specialTag, per_page: 500}, function(result) {
+        _.map(result.photos.photo, checkTag);
       });
 
       function groupDuplicates(results) {
