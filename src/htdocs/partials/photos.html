@@ -1,6 +1,6 @@
 <div class="container text-center">
   <p>
-    <a class="btn btn-warning" role="button" ng-click="autoTag()">mark all but first</a>
+    <a class="btn btn-warning" role="button" ng-click="autoTag()">mark all but one of each</a>
   </p>
   <pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" items-per-page="itemsPerPage"></pagination>
   <div ng-if="initialDownload">
@@ -24,7 +24,7 @@
 <div class="container text-center">
   <pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" items-per-page="itemsPerPage"></pagination>
   <p>
-    <a class="btn btn-warning" role="button" ng-click="autoTag()">mark all but first</a>
+    <a class="btn btn-warning" role="button" ng-click="autoTag()">mark all but one of each</a>
   </p>
 </div>
 
@@ -38,7 +38,7 @@
             click thumbnails to toggle duplicate status (this adds / removes the <i>flickrdupfinder</i> tag on the photo)
           </li>
           <li>
-            use the <a class="btn btn-xs btn-warning" role="button" ng-click="autoTag()">mark all but first</a> button to set the duplicate status for all the photos in a group except the first on the current page all at once (this adds / removes the <i>flickrdupfinder</i> tag on those photos)
+            use the <a class="btn btn-xs btn-warning" role="button" ng-click="autoTag()">mark all but one of each</a> button to keep the first photo in each row and mark all the others as duplicate all at once (this adds the <i>flickrdupfinder</i> tag on those photos)
           </li>
           <li>
             use the paging widget to navigate between pages
