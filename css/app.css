@@ -29,6 +29,10 @@
   padding: 0;
 }
 
+.photo {
+    border:2px solid #FFFFFF
+}
+
 .duplicate {
     opacity: 0.5;
     border:2px solid #FF0000
