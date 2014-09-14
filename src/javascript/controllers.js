@@ -33,8 +33,8 @@ module.exports = angular.module(
       function addTag(photo) {
         photo.inFlight = true;
         Flickr.get({
-          photo_id: photo.id,
           method: 'flickr.photos.addTags',
+          photo_id: photo.id,
           tags: specialTag
         }, function() {
           photo.duplicate = true;
@@ -48,10 +48,10 @@ module.exports = angular.module(
           method: 'flickr.photos.getInfo',
           photo_id: photo.id
         }, function(info) {
-          var tag = _.find(info.photo.tags.tag,
-                           function(tag) {
-                             return tag.raw === specialTag;
-                           });
+          var tag =
+            _.find(info.photo.tags.tag, function(tag) {
+              return tag.raw === specialTag;
+            });
           if (tag) {
             Flickr.get({
               method: 'flickr.photos.removeTag',
@@ -96,12 +96,11 @@ module.exports = angular.module(
 
       function getPage(page, photosAcc) {
         $scope.page = page;
-        Flickr.get(
-          {method: "flickr.photos.search",
-           page: page,
-           per_page: 500,
-           sort: 'date-taken-asc'},
-          function(result) {
+        Flickr.get({
+          method: "flickr.photos.search",
+          page: page,
+          per_page: 500,
+          sort: 'date-taken-asc'}, function(result) {
             $scope.totalPages = result.photos.pages;
             var resultPhotos = result.photos.photo;
             var filteredResultPhotos =
@@ -122,7 +121,8 @@ module.exports = angular.module(
         $scope.totalItems = _.size($scope.groups);
         var first = (($scope.currentPage - 1) * $scope.itemsPerPage);
         var last = $scope.currentPage * $scope.itemsPerPage;
-        $scope.visibleGroups = _.pick($scope.groups, _.keys($scope.groups).slice(first, last));
+        $scope.visibleGroups =
+          _.pick($scope.groups, _.keys($scope.groups).slice(first, last));
       }
 
       $scope.pageChanged = function() {
