@@ -9,8 +9,10 @@ module.exports = angular.module(
    require('./services').name])
   .controller(
     'startCtrl',
-    ['$http', 'OAUTHD_URL', function($http, OAUTHD_URL, $log) {
-      $http.get(OAUTHD_URL + '/ping');
+    ['$http', 'OAUTHD_URL', '$log', function($http, OAUTHD_URL, $log) {
+      $http.get(OAUTHD_URL + '/auth/flickr').success(function(success) {
+        $log.debug("oauthd ping successful:", success);
+      });
     }])
   .controller(
     'photoCtrl',
