@@ -33,6 +33,7 @@ module.exports = angular.module(
                format: "json",
                user_id: "me",
                per_page: 10,
+               sort: 'date-taken-asc',
                //text: "vision:outdoor",
                //tags: "vision:outdoor,vision:outdoor=099",
                //machine_tags: "outdoor",
