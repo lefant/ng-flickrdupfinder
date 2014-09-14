@@ -60,11 +60,9 @@ module.exports = angular.module(
             }, function() {
               photo.duplicate = false;
               photo.inFlight = false;
-              $scope.groups[fingerprint(photo)][photo.id] = photo;
             });
           } else {
             photo.inFlight = false;
-            $scope.groups[fingerprint(photo)][photo.id] = photo;
           }
         });
       };
@@ -84,12 +82,12 @@ module.exports = angular.module(
       }
 
       function atLeastTwo(group) {
-        return group[1].length > 1;
+        return group.length > 1;
       }
 
       function groupDuplicates(photos) {
         var groups = _.groupBy(photos, fingerprint);
-        var groups2 = _.object(_.filter(_.pairs(groups), atLeastTwo));
+        var groups2 = _.filter(groups, atLeastTwo);
         $scope.groups = groups2;
         updateVisibleGroups()
       }
