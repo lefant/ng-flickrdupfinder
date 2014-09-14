@@ -8,7 +8,7 @@ uses filename and date_taken timestamp to identify duplicates, simple
 but often quiet effective. inspired by the now discontinued
 [flickrdupfinder] project.
 
-access live version (beta): http://ng-flickrdupfinder.lefant.net/#/
+access live version (beta): [http://ng-flickrdupfinder.lefant.net/#/]
 
 --
 
@@ -20,3 +20,4 @@ oauth authenticated access to flickr is proxied via https://oauth.io/
 [depstat-url]: https://david-dm.org/lefant/ng-flickrdupfinder#info=devDependencies
 [depstat-image]: https://david-dm.org/lefant/ng-flickrdupfinder/dev-status.svg
 [flickrdupfinder]: https://github.com/christophemaillot/flickrdupfinder
+[http://ng-flickrdupfinder.lefant.net/#/]: http://ly.lefant.net/1qWf28C
