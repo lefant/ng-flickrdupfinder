@@ -67,6 +67,12 @@ module.exports = angular.module(
         });
       };
 
+      $scope.autoTag = function() {
+        _.map($scope.visibleGroups, function(group) {
+          _.map(_.rest(group), addTag);
+        })
+      };
+
       function hasMaxDateTakenGranularity(photo) {
         return true;
         //return photo.datetakengranularity == "0";
