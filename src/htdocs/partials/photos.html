@@ -1,34 +1,64 @@
-<div ng-if="totalItems > 0">
-  <br>
-  instructions: click thumbnails to toggle duplicate status (adds / removes <i>flickrdupfinder</i> tag). when done, go to <a href="https://www.flickr.com/photos/organize" target="_blank">flickr organize view</a>, search for <i>flickrdupfinder</i> and delete results in batch.
-  <br>
-</div>
-<div class="navbar-header">
-  <div class="container">
-    <pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" items-per-page="itemsPerPage"></pagination>
-  </div>
-</div>
-
-<div class="container">
+<div class="container text-center">
+  <p>
+    <a class="btn btn-warning" role="button" ng-click="autoTag()">mark all but first</a>
+  </p>
+  <pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" items-per-page="itemsPerPage"></pagination>
   <div ng-if="initialDownload">
     initial download of photo data in progress (page {{page}} of {{totalPages}})
   </div>
+</div>
+
+<div class="row">
+
   <div ng-if="!groups">
     no duplicates found (yet?)
   </div>
-  <span ng-repeat="(fingerprint, photos) in visibleGroups track by fingerprint">
-    <span ng-repeat="(id, photo) in photos track by id">
-      <img ng-src="http://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_s.jpg" title="{{photo.title}}" ng-click="toggleTag(photo)" ng-class="{inflight: photo.inFlight, duplicate: photo.duplicate}"></img>
-    </span>
-    <br>
-  </span>
-</div>
 
-<div class="footer">
-  <div class="container">
-    <pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" items-per-page="itemsPerPage"></pagination>
+  <div class="col-sm-6 col-md-4 col-lg-3" ng-repeat="(fingerprint, photos) in visibleGroups track by fingerprint">
+    <span ng-repeat="(id, photo) in photos track by id">
+      <img ng-src="http://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_s.jpg" title="{{photo.title}}" ng-click="toggleTag(photo)" ng-class="{inflight: photo.inFlight, duplicate: photo.duplicate, photo: true}"></img>
+    </span>
   </div>
 </div>
-view <a href="https://www.flickr.com/photos/me/tags/flickrdupfinder" target="_blank">photos tagged <i>flickrdupfinder</i></a> to see what you tagged.
-<br>
-<div>visit <a href=http://ly.lefant.net/ng-flickrdupfinder_app>ng-flickrdupfinder on flickr app garden</a></div>
+
+<div class="container text-center">
+  <pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" items-per-page="itemsPerPage"></pagination>
+  <p>
+    <a class="btn btn-warning" role="button" ng-click="autoTag()">mark all but first</a>
+  </p>
+</div>
+
+<div class="row">
+  <div class="col-sm-6">
+    <div ng-if="totalItems > 0">
+      <h3>instructions</h3>
+      <p>
+        <ul>
+          <li>
+            click thumbnails to toggle duplicate status (this adds / removes the <i>flickrdupfinder</i> tag on the photo)
+          </li>
+          <li>
+            use the <a class="btn btn-xs btn-warning" role="button" ng-click="autoTag()">mark all but first</a> button to set the duplicate status for all the photos in a group except the first on the current page all at once (this adds / removes the <i>flickrdupfinder</i> tag on those photos)
+          </li>
+          <li>
+            use the paging widget to navigate between pages
+          </li>
+          <li>
+            once you are done marking duplicates, go to <a href="https://www.flickr.com/photos/organize" target="_blank">flickr organize view</a>, search for <i>flickrdupfinder</i> and delete results in batch
+          </li>
+        </ul>
+      </p>
+      <hl>
+    </div>
+  </div>
+
+
+  <div class="col-sm-6">
+    <p>
+      view <a href="https://www.flickr.com/photos/me/tags/flickrdupfinder" target="_blank">photos tagged <i>flickrdupfinder</i></a> to review what you tagged.
+    </p>
+    <p>
+      visit <a href=http://ly.lefant.net/ng-flickrdupfinder_app>ng-flickrdupfinder on flickr app garden</a>
+    </p>
+  </div>
+</div>

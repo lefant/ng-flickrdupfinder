@@ -19,7 +19,7 @@ module.exports = angular.module(
     ['$scope', '$log', 'Flickr', function($scope, $log, Flickr) {
       var _ = require('underscore');
       var specialTag = 'flickrdupfinder';
-      $scope.itemsPerPage = 10;
+      $scope.itemsPerPage = 16;
       $scope.maxSize = 10;
 
       $scope.toggleTag = function(photo) {
