@@ -1,6 +1,8 @@
 
 # ng-flickrdupfinder [![travis badge][travis-image]][travis-url] [![david-dm badge][depstat-image]][depstat-url]
 
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/lefant/ng-flickrdupfinder?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 next-generation / angularjs flickr duplicate finder
 
 easily find and tag duplicate images in your flickr account. currently
