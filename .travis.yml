@@ -9,3 +9,11 @@ after_success:
   - git config --global user.name "ng-flickrdupfinder travis auto deploy"
   - git config --global user.email "linzberger+travis@gmail.com"
   - gulp deploy-travis
+
+notifications:
+  webhooks:
+    urls:
+      - https://webhooks.gitter.im/e/83be94370a042e2219b9
+    on_success: always  # options: [always|never|change] default: always
+    on_failure: always  # options: [always|never|change] default: always
+    on_start: false     # default: false
