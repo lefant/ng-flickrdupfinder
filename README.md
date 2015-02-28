@@ -1,7 +1,10 @@
 
-# ng-flickrdupfinder [![travis badge][travis-image]][travis-url] [![david-dm badge][depstat-image]][depstat-url]
+# ng-flickrdupfinder
 
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/lefant/ng-flickrdupfinder?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![travis badge][travis-badge]][travis-url]
+[![node versioneye badge][node-badge]][node-url]
+[![bower versioneye badge][bower-badge]][bower-url]
+[![Gitter][gitter-badge]][gitter-url]
 
 next-generation / angularjs flickr duplicate finder
 
@@ -17,9 +20,13 @@ access live version (beta): [http://ng-flickrdupfinder.lefant.net/#/]
 oauth authenticated access to flickr is proxied via https://oauth.io/
 
 
+[travis-badge]: https://travis-ci.org/lefant/ng-flickrdupfinder.svg
 [travis-url]: https://travis-ci.org/lefant/ng-flickrdupfinder
-[travis-image]: https://travis-ci.org/lefant/ng-flickrdupfinder.svg
-[depstat-url]: https://david-dm.org/lefant/ng-flickrdupfinder#info=devDependencies
-[depstat-image]: https://david-dm.org/lefant/ng-flickrdupfinder/dev-status.svg
+[node-badge]: https://www.versioneye.com/user/projects/54f1a2294f3108959a00059c/badge.svg?style=flat
+[node-url]: https://www.versioneye.com/user/projects/54f1a2294f3108959a00059c#dialog_dependency_badge
+[bower-badge]: https://www.versioneye.com/user/projects/54f1a2f44f31083e1b000563/badge.svg?style=flat
+[bower-url]: https://www.versioneye.com/user/projects/54f1a2f44f31083e1b000563#dialog_dependency_badge
+[gitter-badge]: https://badges.gitter.im/Join%20Chat.svg
+[gitter-url]: https://gitter.im/lefant/ng-flickrdupfinder
 [flickrdupfinder]: https://github.com/christophemaillot/flickrdupfinder
 [http://ng-flickrdupfinder.lefant.net/#/]: http://ly.lefant.net/1qWf28C
