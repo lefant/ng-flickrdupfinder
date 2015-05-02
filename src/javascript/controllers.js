@@ -17,7 +17,7 @@ module.exports = angular.module(
   .controller(
     'photoCtrl',
     ['$scope', '$log', 'Flickr', function($scope, $log, Flickr) {
-      var _ = require('underscore');
+      var _ = require('lodash');
       var specialTag = 'flickrdupfinder';
       $scope.itemsPerPage = 16;
       $scope.maxSize = 10;
