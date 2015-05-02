@@ -116,8 +116,8 @@ module.exports = angular.module(
               getPage(page + 1, photosAcc2);
             } else {
               $scope.initialDownload = false;
+              groupDuplicates(photosAcc2);
             }
-            groupDuplicates(photosAcc2);
           });
       }
 
