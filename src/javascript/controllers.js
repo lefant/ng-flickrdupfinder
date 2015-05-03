@@ -40,7 +40,7 @@ module.exports = angular.module(
           photo.duplicate = true;
           photo.inFlight = false;
         });
-      };
+      }
 
       function removeTag(photo) {
         photo.inFlight = true;
@@ -65,12 +65,12 @@ module.exports = angular.module(
             photo.inFlight = false;
           }
         });
-      };
+      }
 
       $scope.autoTag = function() {
         _.map($scope.visibleGroups, function(group) {
           _.map(_.rest(group), addTag);
-        })
+        });
       };
 
       function hasMaxDateTakenGranularity(photo) {
@@ -95,7 +95,7 @@ module.exports = angular.module(
         var groups = _.groupBy(photos, fingerprint);
         var groups2 = _.filter(groups, atLeastTwo);
         $scope.groups = groups2;
-        updateVisibleGroups()
+        updateVisibleGroups();
       }
 
       function getPage(page, photosAcc) {
@@ -130,7 +130,7 @@ module.exports = angular.module(
       }
 
       $scope.pageChanged = function() {
-        updateVisibleGroups()
+        updateVisibleGroups();
       };
 
       $scope.totalItems = 0;
