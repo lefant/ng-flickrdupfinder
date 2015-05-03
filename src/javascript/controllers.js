@@ -100,25 +100,34 @@ module.exports = angular.module(
 
       function getPage(page, photosAcc) {
         $scope.page = page;
-        Flickr.get({
-          method: "flickr.photos.search",
-          page: page,
-          per_page: 500,
-          sort: 'date-taken-asc'}, function(result) {
-            $scope.totalPages = result.photos.pages;
-            var resultPhotos = result.photos.photo;
-            var filteredResultPhotos =
-              _.filter(resultPhotos, hasMaxDateTakenGranularity);
-            var updatedResultPhotos =
-              _.map(filteredResultPhotos, updateDuplicateState);
-            var photosAcc2 = photosAcc.concat(updatedResultPhotos);
-            if (page < result.photos.pages) {
-              getPage(page + 1, photosAcc2);
-            } else {
-              $scope.initialDownload = false;
-              groupDuplicates(photosAcc2);
-            }
-          });
+        var getPageRetry = function(retries) {
+          Flickr.get({
+            method: "flickr.photos.search",
+            page: page,
+            per_page: 500,
+            sort: 'date-taken-asc'}, function(result) {
+              $scope.totalPages = result.photos.pages;
+              var resultPhotos = result.photos.photo;
+              var filteredResultPhotos =
+                _.filter(resultPhotos, hasMaxDateTakenGranularity);
+              var updatedResultPhotos =
+                _.map(filteredResultPhotos, updateDuplicateState);
+              var photosAcc2 = photosAcc.concat(updatedResultPhotos);
+              if (page < result.photos.pages) {
+                getPage(page + 1, photosAcc2);
+              } else {
+                $scope.initialDownload = false;
+                groupDuplicates(photosAcc2);
+              }
+            }, function(error) {
+              $log.debug("getPage error:", error);
+              if (retries < 3) {
+                $log.debug("getPage retries:", retries);
+                getPageRetry(retries + 1);
+              }
+            });
+        };
+        getPageRetry(0);
       }
 
       function updateVisibleGroups() {
