@@ -6,7 +6,8 @@ module.exports = angular.module(
   'flickrDupFinderControllers',
   ['ui.bootstrap.pagination',
    require('./config').name,
-   require('./services').name])
+   require('./services').name,
+   require('./uservoice-shim').name])
   .controller(
     'startCtrl',
     ['$http', 'OAUTHD_URL', '$log', function($http, OAUTHD_URL, $log) {
@@ -16,7 +17,7 @@ module.exports = angular.module(
     }])
   .controller(
     'photoCtrl',
-    ['$scope', '$log', 'Flickr', function($scope, $log, Flickr) {
+    ['$scope', '$log', 'Flickr', 'UserVoice', function($scope, $log, Flickr, UserVoice) {
       var _ = require('lodash');
       var specialTag = 'flickrdupfinder';
       $scope.itemsPerPage = 16;
@@ -137,6 +138,18 @@ module.exports = angular.module(
         $scope.visibleGroups =
           _.pick($scope.groups, _.keys($scope.groups).slice(first, last));
       }
+
+
+      Flickr.get({
+        method: "flickr.test.login"
+      }, function(data) {
+        console.log("flickr.test.login", data.user);
+        UserVoice.push(['identify', {
+          id: data.user.id,
+          name: data.user.username._content
+        }]);
+        UserVoice.push(['autoprompt', {}]);
+      });
 
       $scope.pageChanged = function() {
         updateVisibleGroups();
