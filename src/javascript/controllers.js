@@ -7,7 +7,8 @@ module.exports = angular.module(
   ['ui.bootstrap.pagination',
    require('./config').name,
    require('./services').name,
-   require('./uservoice-shim').name])
+   require('./uservoice-shim').name,
+   require('./keen-shim').name])
   .controller(
     'startCtrl',
     ['$http', 'OAUTHD_URL', '$log', function($http, OAUTHD_URL, $log) {
@@ -17,7 +18,7 @@ module.exports = angular.module(
     }])
   .controller(
     'photoCtrl',
-    ['$scope', '$log', 'Flickr', 'UserVoice', function($scope, $log, Flickr, UserVoice) {
+    ['$scope', '$log', 'Flickr', 'UserVoice', 'Keen', function($scope, $log, Flickr, UserVoice, Keen) {
       var _ = require('lodash');
       var specialTag = 'flickrdupfinder';
       $scope.itemsPerPage = 16;
@@ -118,6 +119,7 @@ module.exports = angular.module(
                 getPage(page + 1, photosAcc2);
               } else {
                 $scope.initialDownload = false;
+                doTrack(photosAcc2.length);
               }
               groupDuplicates(photosAcc2);
             }, function(error) {
@@ -139,16 +141,33 @@ module.exports = angular.module(
           _.pick($scope.groups, _.keys($scope.groups).slice(first, last));
       }
 
+      function doTrack(totalPhotoCount) {
+        var event = {
+          id: $scope.id,
+          name: $scope.name,
+          photos: totalPhotoCount,
+          groups: $scope.groups.length,
+          keen: {
+            timestamp: new Date().toISOString()
+          }
+        };
 
+        Keen.addEvent("loading_complete", event, function(){});
+      }
+
+      $scope.id = "";
+      $scope.name = "";
       Flickr.get({
         method: "flickr.test.login"
       }, function(data) {
-        console.log("flickr.test.login", data.user);
+        $log.debug("flickr.test.login", data.user);
         UserVoice.push(['identify', {
           id: data.user.id,
           name: data.user.username._content
         }]);
         UserVoice.push(['autoprompt', {}]);
+        $scope.id = data.user.id;
+        $scope.name = data.user.username._content;
       });
 
       $scope.pageChanged = function() {
