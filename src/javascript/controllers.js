@@ -147,6 +147,7 @@ module.exports = angular.module(
           name: name,
           photos: totalPhotoCount,
           groups: $scope.groups.length,
+          loadTimeMs: Date.now() - startTime,
           keen: {
             timestamp: new Date().toISOString()
           }
@@ -157,6 +158,7 @@ module.exports = angular.module(
 
       var id = "";
       var name = "";
+      var startTime = Date.now();
       Flickr.get({
         method: "flickr.test.login"
       }, function(data) {
