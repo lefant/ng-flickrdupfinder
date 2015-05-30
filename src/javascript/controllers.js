@@ -143,8 +143,8 @@ module.exports = angular.module(
 
       function doTrack(totalPhotoCount) {
         var event = {
-          id: $scope.id,
-          name: $scope.name,
+          id: id,
+          name: name,
           photos: totalPhotoCount,
           groups: $scope.groups.length,
           keen: {
@@ -155,8 +155,8 @@ module.exports = angular.module(
         Keen.addEvent("loading_complete", event, function(){});
       }
 
-      $scope.id = "";
-      $scope.name = "";
+      var id = "";
+      var name = "";
       Flickr.get({
         method: "flickr.test.login"
       }, function(data) {
@@ -166,8 +166,8 @@ module.exports = angular.module(
           name: data.user.username._content
         }]);
         UserVoice.push(['autoprompt', {}]);
-        $scope.id = data.user.id;
-        $scope.name = data.user.username._content;
+        id = data.user.id;
+        name = data.user.username._content;
       });
 
       $scope.pageChanged = function() {
