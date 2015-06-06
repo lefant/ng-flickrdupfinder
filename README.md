@@ -17,7 +17,9 @@ access live version (beta): [http://ng-flickrdupfinder.lefant.net/#/]
 
 --
 
-oauth authenticated access to flickr is proxied via https://oauth.io/
+oauth authenticated access to flickr is proxied via my own instance of
+oauthd running on heroku:
+https://github.com/lefant/oauthd-lefant-heroku
 
 
 [travis-badge]: https://travis-ci.org/lefant/ng-flickrdupfinder.svg
@@ -29,4 +31,4 @@ oauth authenticated access to flickr is proxied via https://oauth.io/
 [gitter-badge]: https://badges.gitter.im/Join%20Chat.svg
 [gitter-url]: https://gitter.im/lefant/ng-flickrdupfinder
 [flickrdupfinder]: https://github.com/christophemaillot/flickrdupfinder
-[http://ng-flickrdupfinder.lefant.net/#/]: http://ly.lefant.net/1qWf28C
+[http://ng-flickrdupfinder.lefant.net/]: http://ng-flickrdupfinder.lefant.net/?utm_source=github.com&utm_medium=social&utm_campaign=readme#/
