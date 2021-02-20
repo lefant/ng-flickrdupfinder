@@ -1,6 +1,6 @@
 'use strict';
 
-require('./../../bower_components/ui.bootstrap/src/pagination/pagination');
+require('angular-ui-bootstrap/src/pagination/pagination');
 
 module.exports = angular.module(
   'flickrDupFinderControllers',
