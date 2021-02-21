@@ -1,3 +1,5 @@
+const webpack = require('webpack')
+
 module.exports = {
   resolve: {
     fallback: {
@@ -9,4 +11,9 @@ module.exports = {
       url: require.resolve('url/'),
     },
   },
+  plugins: [
+    new webpack.ProvidePlugin({
+      process: 'process/browser',
+    }),
+  ],
 }
