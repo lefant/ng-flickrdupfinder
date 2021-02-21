@@ -1,11 +1,8 @@
-'use strict'
+const OAUTHD_URL = 'https://oauthd-lefant.herokuapp.com'
+const APP_PUBLIC_KEY = '4UET5aV8f_Np4Eam-BCfQ8zvNzI'
 
 module.exports = angular
-  .module('flickrDupFinderServices', [
-    'ngResource',
-    'flickrDupFinderConfig',
-    'OAuth',
-  ])
+  .module('flickrDupFinderServices', ['ngResource', 'OAuth'])
   .service('Flickr', [
     '$log',
     '$resource',
@@ -13,18 +10,7 @@ module.exports = angular
     '$q',
     '$location',
     'OAuth',
-    'OAUTHD_URL',
-    'APP_PUBLIC_KEY',
-    function (
-      $log,
-      $resource,
-      $http,
-      $q,
-      $location,
-      OAuth,
-      OAUTHD_URL,
-      APP_PUBLIC_KEY
-    ) {
+    function ($log, $resource, $http, $q, $location, OAuth) {
       if ($location.hash() === '') {
         $location.path('/photos')
       } //so redirect to absUrl() works
