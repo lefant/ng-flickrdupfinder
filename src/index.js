@@ -84,8 +84,7 @@ angular
     '$log',
     'Flickr',
     // 'UserVoice',
-    function ($scope, $log, Flickr, UserVoice) {
-      const UserVoice = UserVoice || []
+    function ($scope, $log, Flickr, UserVoice = []) {
       var _ = require('lodash')
       var specialTag = 'flickrdupfinder'
       $scope.itemsPerPage = 16
