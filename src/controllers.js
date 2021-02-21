@@ -1,5 +1,3 @@
-'use strict'
-
 module.exports = angular
   .module('flickrDupFinderControllers', [
     'ui.bootstrap.pagination',
