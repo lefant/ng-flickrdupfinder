@@ -71,7 +71,6 @@ angular
   ])
   .controller('startCtrl', [
     '$http',
-    'OAUTHD_URL',
     '$log',
     function ($http, $log) {
       $http.get(OAUTHD_URL + '/auth/flickr').success(function (success) {
