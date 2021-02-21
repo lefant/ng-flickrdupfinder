@@ -1,10 +1,5 @@
 'use strict'
 
-require('angular-resource')
-
-require('./config')
-require('./oauth-shim')
-
 module.exports = angular
   .module('flickrDupFinderServices', [
     'ngResource',

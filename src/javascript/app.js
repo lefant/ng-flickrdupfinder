@@ -1,7 +1,13 @@
 'use strict'
 
+require('angular-resource')
 require('angular-route')
+require('angular-ui-bootstrap/src/pagination/pagination')
 
+require('./config')
+require('./oauth-shim')
+require('./uservoice-shim')
+require('./services')
 require('./controllers')
 
 angular

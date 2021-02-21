@@ -1,11 +1,5 @@
 'use strict'
 
-require('angular-ui-bootstrap/src/pagination/pagination')
-
-require('./config')
-require('./services')
-require('./uservoice-shim')
-
 module.exports = angular
   .module('flickrDupFinderControllers', [
     'ui.bootstrap.pagination',
