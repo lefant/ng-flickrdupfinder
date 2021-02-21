@@ -1,3 +1,5 @@
+import angular from 'angular'
+
 require('angular-resource')
 require('angular-route')
 require('angular-ui-bootstrap/src/pagination/pagination')
