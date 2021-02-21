@@ -4,8 +4,7 @@ require('angular-resource')
 require('angular-route')
 require('angular-ui-bootstrap/src/pagination/pagination')
 
-require('./oauth-shim')
-require('./uservoice-shim')
+// require('./uservoice-shim')
 require('./services')
 require('./controllers')
 
