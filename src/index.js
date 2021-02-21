@@ -3,6 +3,7 @@ import angular from 'angular'
 require('angular-resource')
 require('angular-route')
 require('angular-ui-bootstrap/src/pagination/pagination')
+require('angular-ui-bootstrap/src/paging/paging')
 
 const OAuth = require('oauth-js')
 
@@ -16,6 +17,7 @@ angular
     'ngResource',
     'ngRoute',
     'ui.bootstrap.pagination',
+    'ui.bootstrap.paging',
   ])
   .service('Flickr', [
     '$log',
