@@ -73,9 +73,10 @@ angular
     '$http',
     '$log',
     function ($http, $log) {
-      $http.get(OAUTHD_URL + '/auth/flickr').then(function (success) {
-        $log.debug('oauthd ping successful:', success)
-      })
+      // $http.get(OAUTHD_URL + '/auth/flickr').then(function (success) {
+      //     $log.debug('oauthd ping successful:', success)
+      // })
+      $log.debug('oauthd ping skipped:')
     },
   ])
   .controller('photoCtrl', [
