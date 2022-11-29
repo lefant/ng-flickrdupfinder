@@ -1,3 +1,7 @@
+# important update 2022 November
+
+as I have stopped using flickr myself, heroku has stopped their free tier and I have little time for this I am no longer running this service.
+
 
 # ng-flickrdupfinder
 
@@ -12,8 +16,6 @@ easily find and tag duplicate images in your flickr account. currently
 uses filename and date_taken timestamp to identify duplicates, simple
 but often quiet effective. inspired by the now discontinued
 [flickrdupfinder] project.
-
-access live version (beta): [http://ng-flickrdupfinder.lefant.net/#/]
 
 --
 
